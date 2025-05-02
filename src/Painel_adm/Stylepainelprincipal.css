@@ -1,0 +1,35 @@
+* {
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 5px;
+}
+
+.nav-bar {
+    background-color: rgb(3, 143, 237);
+    height: 63px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display: flex;
+    align-items: center; 
+}
+
+.title_dashboard {
+    margin-left: 1%;
+    font-size: 25px;
+    color: aliceblue;
+
+}
+
+
+/* Responsividade para telas pequenas (móvel) */
+@media (max-width: 768px) {
+    .nav-bar {
+       
+        justify-content: center; /* Alinha o título horizontalmente no meio */
+        padding-top: 0; /* Remove qualquer preenchimento extra no topo */
+    }
+
+    .title_dashboard {
+        font-size: 20px; /* Ajusta o tamanho da fonte em telas pequenas */
+    }
+}

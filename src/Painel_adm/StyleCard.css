@@ -1,0 +1,26 @@
+.cards{
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+    margin-top: 2%;
+    }
+    .users,
+    .sales,
+    .orders,
+    .tickets{
+        gap: 1px;
+        width: 20%;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+    }
+    
+    .titlecards{
+    text-align: center;
+    font-size: 22px;
+    font-weight: 400;
+    }
+    .info{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    }
