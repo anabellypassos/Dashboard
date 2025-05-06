@@ -1,6 +1,7 @@
 import React from 'react'
 import Stylepainelprincipal from '../Painel_adm/Stylepainelprincipal.css';
 import Cards from '../Painel_adm/Cards';
+import SalesChart from './SalesChart';
 
 const PaineilTelaPrincipal = () => {
   return (
@@ -9,7 +10,7 @@ const PaineilTelaPrincipal = () => {
         <h1 className='title_dashboard'>Dashboard Administrativo</h1>
       </div>
       <Cards/>
-
+      <SalesChart />
 
     </div>
   )
