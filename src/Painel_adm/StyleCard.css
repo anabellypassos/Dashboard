@@ -1,17 +1,19 @@
 .cards{
     display: flex;
-    justify-content:space-evenly;
+    justify-content:center;
     align-items: center;
     margin-top: 2%;
+ gap: 15px;
     }
     .users,
     .sales,
     .orders,
     .tickets{
-        gap: 1px;
+       
         width: 20%;
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         transform: translateY(-2px);
+        border-radius: 5%;
     }
     
     .titlecards{
@@ -24,6 +26,23 @@
     font-size: 30px;
     font-weight: bold;
     }
+    .icon {
+  color: rgb(3, 143, 237);
+  font-size: 28px;
+}
+
+/* Ícones menores em telas menores */
+@media (max-width: 768px) {
+  .icon {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .icon {
+    font-size: 16px;
+  }
+}
     @media screen and (max-width:734px) {
         .cards{
             margin-top: 3%;
@@ -40,13 +59,13 @@
             
             .titlecards{
             text-align: center;
-            font-size: 12px;
+            font-size: 15px;
             font-weight: 400;
             }
             .info{
             text-align: center;
-            font-size: 15px;
+            font-size: 12px;
             font-weight: bold;
             }
-        
+       
     }

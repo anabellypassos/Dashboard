@@ -1,4 +1,5 @@
 import PaineilTelaPrincipal from "./Painel_adm/PaineilTelaPrincipal";
+import appStyle from "../src/App.css"
 
 function App() {
   return (

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import StylesChart from '../Painel_adm/SalesChart.css';
 import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from "recharts";
-
 
 const SalesChart = () => {
     const [dadosVendas, setDadosVendas] = useState([]);
@@ -11,14 +11,37 @@ const SalesChart = () => {
         fetch('https://681401b7225ff1af1627ad6a.mockapi.io/api/dashboard/users')
             .then(response => response.json())
             .then(data => {
-                if (Array.isArray(data) && data.length > 0) {
-                    const info = data[0];
-                    const vendas = info.sales || []; // <-- array com número de vendas por mês
-                    const meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul'];
+                if (Array.isArray(data)) {
+                    const mesesOrdenados = [
+                        'January', 'February', 'March', 'April', 'May', 'June',
+                        'July', 'August', 'September', 'October', 'November', 'December'
+                    ];
 
-                    const vendasMensais = meses.map((mes, index) => ({
-                        name: mes,
-                        vendas: vendas[index] || 0 // se faltar algum mês, assume 0
+                    const mesesAbreviados = {
+                        January: 'Jan', February: 'Fev', March: 'Mar', April: 'Abr',
+                        May: 'Mai', June: 'Jun', July: 'Jul', August: 'Ago',
+                        September: 'Set', October: 'Out', November: 'Nov', December: 'Dez'
+                    };
+
+                    // Inicializa o acumulador com todos os meses zerados
+                    const vendasPorMes = {};
+                    mesesOrdenados.forEach(mes => {
+                        vendasPorMes[mes] = 0;
+                    });
+
+                    // Soma os valores por mês
+                    data.forEach(item => {
+                        const mes = item.data; // ex: "January"
+                        const pedidos = parseInt(item.orders, 10) || 0;
+                        if (mesesOrdenados.includes(mes)) {
+                            vendasPorMes[mes] += pedidos;
+                        }
+                    });
+
+                    // Gera a lista final com os nomes abreviados
+                    const vendasMensais = mesesOrdenados.map(mes => ({
+                        name: mesesAbreviados[mes], // Abreviação correta
+                        vendas: vendasPorMes[mes]
                     }));
 
                     setDadosVendas(vendasMensais);
@@ -30,16 +53,16 @@ const SalesChart = () => {
     }, []);
 
     return (
-        <div className="containervendas" style={{ width: "40%", height: 300 }}>
-            <h1>Relatório de Vendas</h1>
-            <ResponsiveContainer>
-                <LineChart data={dadosVendas}>
+        <div className="containervendas" style={{ width: "50%", height: 400 }}>
+            <h1 className='titlegrafico'>Relatório de Vendas</h1>
+            <ResponsiveContainer width="100%" height="80%">
+                <LineChart data={dadosVendas} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
-                    <YAxis allowDecimals={false} />
+                    <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Line type="monotone" dataKey="vendas" stroke="#8884d8" strokeWidth={1} name="Vendas por Mês" />
+                    <Line type="monotone" dataKey="vendas" stroke="#0D00FDFF" activeDot={{ r: 8 }} />
                 </LineChart>
             </ResponsiveContainer>
         </div>
