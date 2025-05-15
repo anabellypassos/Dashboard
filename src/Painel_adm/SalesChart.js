@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import StylesChart from '../Painel_adm/SalesChart.css';
 import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from "recharts";
+import '../Painel_adm/SalesChart.css'
+import { CiSearch } from "react-icons/ci";
+
 
 const SalesChart = () => {
     const [dadosVendas, setDadosVendas] = useState([]);
@@ -51,8 +53,11 @@ const SalesChart = () => {
                 console.error('Erro ao buscar dados do gráfico', error);
             });
     }, []);
-
+    
+  const [busca,setBusca]=useState();
+  console.log(busca);
     return (
+            <div className="containergeral">
         <div className="containervendas" style={{ width: "50%", height: 400 }}>
             <h1 className='titlegrafico'>Relatório de Vendas</h1>
             <ResponsiveContainer width="100%" height="80%">
@@ -66,7 +71,15 @@ const SalesChart = () => {
                 </LineChart>
             </ResponsiveContainer>
         </div>
-    );
+
+        <div className='containerpesquisa'>
+            <div className="search">
+                <input type="text" placeholder='Pesquisar por nome' value={busca} onChange={(ev)=>setBusca(ev.target.value)} />
+                <button className='Search'><CiSearch /></button>
+            </div>
+        </div>
+    </div>
+);
 };
 
 export default SalesChart;

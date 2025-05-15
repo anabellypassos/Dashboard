@@ -1,16 +1,51 @@
-    .titlegrafico {
-        margin-left: 8%;
-        margin-right: 8%;
-        margin-top: 5px;
-    }
+.containergeral {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 8%;
+    gap: 20px;
+}
 
-    .containervendas {
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        transform: translateY(-2px);
-        margin-left: 8%;
-        margin-right: 8%;
-        margin-top: 5px;
-        margin-top: 30px;
-        border-radius: 5%;
+.containervendas {
+    flex: 2;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 5%;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.containerpesquisa {
+    flex: 1;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    background-color: #fff;
+    height: 400px; /* mesma altura do gráfico */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: flex-start; /* <-- Aqui está a mudança */
+
+}
+
+.search {
+    display: flex;
+ 
+}
+
+.search input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
     
-    }
+}
+
+.Search {
+    background-color: #0D00FDFF;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}

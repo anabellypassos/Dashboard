@@ -5,6 +5,7 @@ import { FaBox } from "react-icons/fa";
 import { RiTicketFill } from "react-icons/ri";
 import StyleCards from "../Painel_adm/StyleCard.css"
 
+
 const Cards = () => {
   const [dashboardData, setDashboardData] = useState({
     userCount: 0,
