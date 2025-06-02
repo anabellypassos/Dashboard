@@ -8,12 +8,16 @@ import { CiSearch } from "react-icons/ci";
 
 const SalesChart = () => {
     const [dadosVendas, setDadosVendas] = useState([]);
+    const [usuarios,setUsuarios]=useState([]);
+    const [busca, setBusca] = useState("");
 
     useEffect(() => {
         fetch('https://681401b7225ff1af1627ad6a.mockapi.io/api/dashboard/users')
             .then(response => response.json())
             .then(data => {
                 if (Array.isArray(data)) {
+                    setUsuarios(data);
+
                     const mesesOrdenados = [
                         'January', 'February', 'March', 'April', 'May', 'June',
                         'July', 'August', 'September', 'October', 'November', 'December'
@@ -53,8 +57,12 @@ const SalesChart = () => {
                 console.error('Erro ao buscar dados do gráfico', error);
             });
     }, []);
+    const usuariosFiltrados = usuarios.filter(usuario =>
+    usuario.nome?.toLowerCase().includes(busca.toLowerCase()) ||
+    usuario.email?.toLowerCase().includes(busca.toLowerCase())
+  );
     
-  const [busca,setBusca]=useState();
+  
   console.log(busca);
     return (
             <div className="containergeral">
@@ -77,6 +85,13 @@ const SalesChart = () => {
                 <input type="text" placeholder='Pesquisar por nome' value={busca} onChange={(ev)=>setBusca(ev.target.value)} />
                 <button className='Search'><CiSearch /></button>
             </div>
+            <ul>
+          {usuariosFiltrados.map(user => (
+            <li key={user.id}>
+              <strong>{user.nome}</strong> - {user.email}
+            </li>
+          ))}
+        </ul>
         </div>
     </div>
 );
